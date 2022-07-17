@@ -2,11 +2,18 @@
 
 <%= button_to("Log Out", destroy_user_session_path, method: :delete) %>
 
-<% if @friend_requests.any? %>
-  <h2>Friend Requests</h2>
-  <% @friend_requests.each do |friend_request| %>
-    <p>
-      From: <%= friend_request.sender.username %>
-    </p>
-  <% end %>
+<h2>Other Users</h2>
+<% @other_users.each do |other_user| %>
+  <p>
+    <%= other_user.username %>
+    <% if other_user.pending_friends.include?(@user) %>
+      <%= button_to "Cancel Friend Request", friend_request_path, params: { friend_request: { sender_id: @user, receiver_id: other_user } }, method: :delete %>
+    <% elsif @user.pending_friends.include?(other_user) %>
+      <%= button_to "Accept Friend Request", friendships_path, params: { friendship: { user_id: @user, friend_id: other_user } } %>
+    <% elsif @user.friends.include?(other_user) %>
+      <%= button_to "Unfriend", friendship_path, params: { friendship: { user_id: @user, friend_id: other_user } }, method: :delete %>
+    <% else %>
+      <%= button_to "Add Friend", friend_requests_path, params: { friend_request: { sender_id: @user, receiver_id: other_user } } %>
+    <% end %>
+  </p>
 <% end %>
