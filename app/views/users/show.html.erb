@@ -6,6 +6,7 @@
 <% @other_users.each do |other_user| %>
   <p>
     <%= other_user.username %>
+
     <% if other_user.pending_friends.include?(@user) %>
       <%= button_to "Cancel Friend Request", friend_request_path, params: { friend_request: { sender_id: @user, receiver_id: other_user } }, method: :delete %>
     <% elsif @user.pending_friends.include?(other_user) %>
