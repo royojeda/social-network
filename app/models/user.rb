@@ -12,4 +12,6 @@ class User < ApplicationRecord
 
   has_many :friend_requests, dependent: :destroy, foreign_key: :receiver_id
   has_many :pending_friends, through: :friend_requests, source: :sender
+
+  has_many :posts, inverse_of: :author, foreign_key: :author_id
 end
