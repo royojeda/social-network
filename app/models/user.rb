@@ -14,4 +14,6 @@ class User < ApplicationRecord
   has_many :pending_friends, through: :friend_requests, source: :sender
 
   has_many :posts, inverse_of: :author, foreign_key: :author_id
+
+  has_many :comments, inverse_of: :commenter, foreign_key: :commenter_id
 end
