@@ -16,4 +16,13 @@ class User < ApplicationRecord
   has_many :posts, inverse_of: :author, foreign_key: :author_id
 
   has_many :comments, inverse_of: :commenter, foreign_key: :commenter_id
+
+  has_many :likes, dependent: :destroy,
+                   foreign_key: :liker_id
+  has_many :liked_posts, through: :likes,
+                         source: :likeable,
+                         source_type: "Post"
+  has_many :liked_comments, through: :likes,
+                            source: :likeable,
+                            source_type: "Comment"
 end

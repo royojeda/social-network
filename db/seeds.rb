@@ -6,6 +6,7 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
+Like.delete_all
 Comment.delete_all
 Post.delete_all
 FriendRequest.delete_all
@@ -26,4 +27,7 @@ p1 = u1.posts.create(content: "Hello, world!")
 u1.posts.create(content: "I am the second post.")
 u2.posts.create(content: "My author is User 2")
 
-p1.comments.create(commenter: u4, body: "Test comment.")
+c1 = p1.comments.create(commenter: u4, body: "Test comment.")
+
+Like.create(liker: u1, likeable: p1)
+Like.create(liker: u4, likeable: c1)
