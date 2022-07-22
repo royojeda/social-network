@@ -1,8 +1,10 @@
-<div class="h-screen flex justify-center">
+<div class="h-screen flex justify-center bg-gray-200">
   <div class="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
     <div class="max-w-md w-full space-y-6">
-      <div>
-        <img class="mx-auto h-12 w-auto text-gray-400" src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg" alt="Workflow">
+      <div class="flex justify-center">
+        <%= link_to unauthenticated_root_path do %>
+          <img class="mx-auto h-12 w-auto" src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg" alt="Workflow">
+        <% end %>
         <% if false%>
         <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">Sign in to your account</h2>
         <% end %>
@@ -11,12 +13,12 @@
         <div class="rounded-md shadow-sm -space-y-px">
           <div class="field">
             <%= f.label :username, class: "sr-only" %>
-            <%= f.text_field :username, autofocus: true, class: "appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-gray-500 focus:z-10 sm:text-md", placeholder: "Username", autocomplete: :off, required: true %>
+            <%= f.text_field :username, autofocus: true, class: "appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-gray-500 focus:z-10 sm:text-md bg-gray-50", placeholder: "Username", autocomplete: :off, required: true %>
           </div>
 
           <div class="field">
             <%= f.label :password, class: "sr-only" %>
-            <%= f.password_field :password, autocomplete: "current-password", placeholder: "Password", required: true, class: "appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-gray-500 focus:z-10 sm:text-md" %>
+            <%= f.password_field :password, autocomplete: "current-password", placeholder: "Password", required: true, class: "appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-gray-500 focus:z-10 sm:text-md bg-gray-50" %>
           </div>
         </div>
 
@@ -36,13 +38,13 @@
         <% end %>
 
         <div class="actions">
-          <%= f.button class: "w-full py-2 px-4 text-md font-medium rounded-md text-white bg-gray-500 shadow-md hover:bg-gray-700 focus:ring-2 focus:ring-offset-2 focus:ring-gray-500" do %>
+          <%= f.button class: "w-full py-2 px-4 text-md font-medium rounded-md text-gray-50 bg-gray-600 shadow-md hover:bg-gray-500 focus:bg-gray-700 focus:ring-2 focus:ring-offset-2 focus:ring-gray-500" do %>
             Log in
           <% end %>
         </div>
       <% end %>
       <div class="border-b border-stone-400"></div>
-      <%= link_to "Create new account", new_user_registration_path, class: "mx-auto w-fit flex py-2 px-4 border border-transparent text-md font-medium rounded-md text-white bg-indigo-600 shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+      <%= link_to "Create new account", new_user_registration_path, class: "mx-auto w-fit flex py-2 px-4 border border-transparent text-md font-medium rounded-md text-gray-50 bg-indigo-600 shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
     </div>
   </div>
 </div>
