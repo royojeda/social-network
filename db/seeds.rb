@@ -13,10 +13,10 @@ FriendRequest.delete_all
 Friendship.delete_all
 User.delete_all
 
-u1 = User.create(username: "User 1", email: "1@2", password: "123123")
-u2 = User.create(username: "User 2", email: "2@3", password: "123123")
-User.create(username: "User 3", email: "3@4", password: "123123")
-u4 = User.create(username: "User 4", email: "4@5", password: "123123")
+u1 = User.create(email: "1@2", password: "123123")
+u2 = User.create(email: "2@3", password: "123123")
+User.create(email: "3@4", password: "123123")
+u4 = User.create(email: "4@5", password: "123123")
 
 # User.find_by(username: "User 1").friends << User.find_by(username: "User 2")
 

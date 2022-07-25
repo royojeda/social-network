@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :email, uniqueness: true, presence: true
-  validates :username, uniqueness: true, presence: true, length: { in: 4..12 }
+  # validates :username, uniqueness: true, presence: true, length: { in: 4..12 }
 
   has_many :friendships, dependent: :destroy
   has_many :friends, through: :friendships
