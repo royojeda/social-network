@@ -25,4 +25,6 @@ class User < ApplicationRecord
   has_many :liked_comments, through: :likes,
                             source: :likeable,
                             source_type: "Comment"
+
+  has_one :profile
 end

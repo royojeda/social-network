@@ -6,6 +6,7 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
+Profile.delete_all
 Like.delete_all
 Comment.delete_all
 Post.delete_all
@@ -31,3 +32,5 @@ c1 = p1.comments.create(commenter: u4, body: "Test comment.")
 
 Like.create(liker: u1, likeable: p1)
 Like.create(liker: u4, likeable: c1)
+
+Profile.create(user: u1, first_name: "John", last_name: "Doe", birth_date: Date.parse("1997-02-22"))
