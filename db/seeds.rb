@@ -6,18 +6,22 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-Profile.delete_all
-Like.delete_all
-Comment.delete_all
-Post.delete_all
-FriendRequest.delete_all
-Friendship.delete_all
-User.delete_all
+# Profile.delete_all
+# Like.delete_all
+# Comment.delete_all
+# Post.delete_all
+# FriendRequest.delete_all
+# Friendship.delete_all
+User.destroy_all
 
 u1 = User.create(email: "1@2", password: "123123")
+u1.create_profile(first_name: "John", last_name: "Doe", birth_date: Date.parse("1997-02-22"))
 u2 = User.create(email: "2@3", password: "123123")
-User.create(email: "3@4", password: "123123")
+u2.create_profile(first_name: "Jane", last_name: "Dee", birth_date: Date.parse("1988-07-15"))
+u3 = User.create(email: "3@4", password: "123123")
+u3.create_profile(first_name: "Mark", last_name: "Johnson", birth_date: Date.parse("1951-05-09"))
 u4 = User.create(email: "4@5", password: "123123")
+u4.create_profile(first_name: "John", last_name: "Markson", birth_date: Date.parse("1975-11-30"))
 
 # User.find_by(username: "User 1").friends << User.find_by(username: "User 2")
 
@@ -32,5 +36,3 @@ c1 = p1.comments.create(commenter: u4, body: "Test comment.")
 
 Like.create(liker: u1, likeable: p1)
 Like.create(liker: u4, likeable: c1)
-
-Profile.create(user: u1, first_name: "John", last_name: "Doe", birth_date: Date.parse("1997-02-22"))

@@ -1,31 +1,4 @@
-<h2>Sign up</h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", required: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password", required: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password", required: true %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
+<%= render "devise/shared/error_messages", resource: resource %>
 <%= render "devise/shared/links" %>
 
 <div data-sign-up-modal-target="modal" id="authentication-modal" tabindex="-1" class="flex bg-gray-200 overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full justify-center items-center" aria-modal="true" role="dialog">
@@ -52,18 +25,25 @@
             <%= form.password_field :password, autocomplete: "new-password", required: true, class: "mt-3 appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-gray-500 focus:z-10 sm:text-sm bg-gray-50", placeholder: "New password" %>
           </div>
 
-          <div class="flex gap-x-2.5 mt-3">
-            <input type="text" name="email" class="appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-gray-500 focus:z-10 sm:text-sm bg-gray-50" placeholder="First name" required="">
-            <input type="text" name="email" class="appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-gray-500 focus:z-10 sm:text-sm bg-gray-50" placeholder="Last name" required="">
+          <div class="field">
+            <%= form.password_field :password_confirmation, autocomplete: "new-password", required: true, class: "mt-3 appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-gray-500 focus:z-10 sm:text-sm bg-gray-50", placeholder: "Confirm password" %>
           </div>
 
-          <p class="mt-3 text-xs">Birthday</p>
+          <%= form.fields_for :profile, resource.build_profile do |profile_form| %>
+            <div class="flex gap-x-2.5 mt-3">
+              <%= profile_form.text_field :first_name, class: "appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-gray-500 focus:z-10 sm:text-sm bg-gray-50", placeholder: "First name", required: true %>
 
-          <div class="flex gap-4">
-            <%= form.date_select :created_at, { use_short_month: true, order: [:month, :day, :year], start_year: 1900, end_year: Time.now.year, prompt: true }, { class: "testasd mt-0.5 appearance-none relative block px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-gray-500 focus:z-10 sm:text-sm bg-gray-50 flex-1", required: true } %>
-          </div>
+              <%= profile_form.text_field :last_name, class: "appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-gray-500 focus:z-10 sm:text-sm bg-gray-50", placeholder: "Last name", required: true %>
+            </div>
 
-          <button type="submit" class="mt-6 mx-auto block text-white bg-indigo-600 hover:bg-indigo-500 focus:bg-indigo-700 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-md text-xl px-12 py-1.5 text-center">Sign Up</button>
+            <p class="mt-3 text-xs">Birthday</p>
+
+            <div class="flex gap-4">
+              <%= profile_form.date_select :birth_date, { use_short_month: true, order: [:month, :day, :year], start_year: 1900, end_year: Time.now.year, prompt: true }, { class: "select-dropdown mt-0.5 appearance-none relative block px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-gray-500 focus:z-10 sm:text-sm bg-gray-50 flex-1", required: true } %>
+            </div>
+          <% end %>
+
+          <%= form.submit "Sign Up", class: "mt-6 mx-auto block text-white bg-indigo-600 hover:bg-indigo-500 focus:bg-indigo-700 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-md text-xl px-12 py-1.5 text-center" %>
         <% end %>
       </div>
     </div>
