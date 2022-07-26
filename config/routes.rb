@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'likes/create'
   resources :profiles
   resources :posts
   devise_scope :user do
@@ -17,4 +18,5 @@ Rails.application.routes.draw do
   resources :users
   resources :friend_requests
   resources :friendships
+  resources :likes
 end
