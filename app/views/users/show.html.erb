@@ -58,37 +58,31 @@
       </div>
     </div>
 
-    <div class="flex-1 basis-[50%] mt-24">
-      <div class="mx-4 p-8 text-justify rounded-lg shadow bg-gray-50">
-        <h2 class="text-xl">Augustus Caesar</h2>
-        <p class="mt-8">
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Optio similique perferendis voluptas magni id at vitae, hic quae dolorum praesentium minus mollitia accusamus doloribus blanditiis est repellat cumque beatae vero ab nam reprehenderit! Ullam tenetur culpa minus pariatur, modi obcaecati, doloremque ad sequi explicabo non cumque! Laboriosam ab illum nam quia, recusandae perferendis officia ratione nisi voluptas eveniet dolorum corporis nobis ducimus quisquam deserunt, enim doloremque nihil officiis est? Omnis corporis facilis labore libero fugit placeat impedit fuga deleniti tenetur! Aspernatur, dolorem. Debitis animi impedit optio voluptates, facere illo totam architecto quisquam accusamus at quos autem, laboriosam ullam natus dolore.
-        </p>
-      </div>
-      <div class="m-4 p-8 text-justify rounded-lg shadow bg-gray-50">
-        <h2 class="text-xl">Augustus Caesar</h2>
-        <p class="mt-8">
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Totam natus nam doloribus dolore? Beatae sint tempore molestias exercitationem ad vero.
-        </p>
-      </div>
-      <div class="m-4 p-8 text-justify rounded-lg shadow bg-gray-50">
-        <h2 class="text-xl">Augustus Caesar</h2>
-        <p class="mt-8">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam nostrum atque error? Rerum debitis distinctio reprehenderit laudantium repellat id fugiat assumenda porro voluptatem laborum harum eligendi quidem fuga iure reiciendis deserunt ab laboriosam, recusandae sunt.
-        </p>
-      </div>
-      <div class="m-4 p-8 text-justify rounded-lg shadow bg-gray-50">
-        <h2 class="text-xl">Augustus Caesar</h2>
-        <p class="mt-8">
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deserunt rerum incidunt blanditiis fugiat obcaecati. Quas saepe atque inventore minima temporibus beatae repellat aliquid at nesciunt animi incidunt cumque tenetur soluta possimus labore nulla nam voluptate, eum autem sit quos ex deleniti doloribus illo! Eveniet accusantium, esse qui maxime quam doloribus a ullam ex. Nulla adipisci sequi quasi placeat tenetur. Suscipit numquam ipsa autem iure unde earum in beatae! Rem necessitatibus animi asperiores repellat quibusdam dolorem quos quia quae dolor possimus facere sapiente, optio inventore repudiandae sint? A eum odio voluptas sequi, numquam maxime unde ad qui obcaecati reprehenderit magni dignissimos enim itaque ipsam. Minima aliquam perspiciatis dignissimos? Tempora numquam facere minus autem laborum saepe consequuntur amet ut laboriosam, dolore dolorum molestiae accusantium consectetur culpa officia nesciunt illo veniam, cumque corporis. Suscipit non cumque magnam laudantium. Laboriosam magni facere eligendi consequatur necessitatibus aliquam eos accusantium, quod, reiciendis sint architecto esse amet.
-        </p>
-      </div>
-      <div class="m-4 mb-8 p-8 text-justify rounded-lg shadow bg-gray-50">
-        <h2 class="text-xl">Augustus Caesar</h2>
-        <p class="mt-8">
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo impedit nobis eum nihil incidunt dolores cupiditate. Quae exercitationem quaerat minima error, voluptates vero molestias quisquam, asperiores nihil corrupti quis odit? Pariatur ipsum, corporis voluptatibus eligendi in tempora atque sunt, error unde sit veniam veritatis quasi officiis natus saepe ipsam autem.
-        </p>
-      </div>
+    <div class="flex-1 basis-[50%] mt-24 space-y-4 mb-[28px]">
+      <% @posts.each do |post| %>
+        <div class="mx-4 p-8 text-justify rounded-lg shadow bg-gray-50">
+          <h2 class="text-xl">
+            <%= post.author.profile.first_name %>
+            <%= post.author.profile.last_name %>
+          </h2>
+
+          <p class="mt-8">
+            <%= post.content %>
+          </p>
+
+          <div class="mt-8 p-1 flex justify-around border-y border-stone-400 space-x-1">
+            <%= button_to "#", class: "flex-1 flex justify-center items-center space-x-2 hover:bg-gray-200 rounded-md py-2", form_class: "flex-1 flex" do %>
+              <%= image_tag "icons/like.svg", size: "20" %>
+              <p class="pt-[2px]">Like</p>
+            <% end %>
+
+            <%= button_to "#", class: "flex-1 flex justify-center items-center space-x-2 hover:bg-gray-200 rounded-md py-2", form_class: "flex-1 flex" do %>
+              <%= image_tag "icons/comment.svg", size: "20", class: "pt-1" %>
+              <p class="pt-[2px]">Comment</p>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
     </div>
 
     <div class="flex-1 basis-[25%]">
