@@ -74,3 +74,5 @@ end
 gem "devise", "~> 4.8"
 
 gem "cssbundling-rails", "~> 1.1"
+
+gem "faker", "~> 2.21", :group => :development

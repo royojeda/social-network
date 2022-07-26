@@ -13,6 +13,7 @@
 # FriendRequest.delete_all
 # Friendship.delete_all
 User.destroy_all
+Faker::UniqueGenerator.clear
 
 u1 = User.create(email: "1@2", password: "123123")
 u1.create_profile(first_name: "John", last_name: "Doe", birth_date: Date.parse("1997-02-22"))
@@ -36,3 +37,15 @@ c1 = p1.comments.create(commenter: u4, body: "Test comment.")
 
 Like.create(liker: u1, likeable: p1)
 Like.create(liker: u4, likeable: c1)
+
+100.times do
+  u = User.create(email: Faker::Internet.email, password: "123123")
+  u.create_profile(first_name: Faker::Name.first_name,
+                   last_name: Faker::Name.last_name,
+                   birth_date: Faker::Date.birthday(min_age: 13, max_age: 100))
+end
+
+20.times do
+  Post.create(author: User.find(User.pluck(:id).sample),
+              content: Faker::Movies::HarryPotter.unique.quote)
+end
