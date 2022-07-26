@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  get 'likes/create'
-  resources :profiles
-  resources :posts
   devise_scope :user do
     get "users", to: "devise/sessions#new"
 
@@ -18,5 +15,9 @@ Rails.application.routes.draw do
   resources :users
   resources :friend_requests
   resources :friendships
+  resources :profiles
+  resources :posts
   resources :likes
+
+  delete "likes", to: "likes#destroy"
 end
