@@ -1,0 +1,17 @@
+<%= turbo_frame_tag likeable, class: "flex-1" do %>
+  <% if likeable.likers.include?(current_user) %>
+    <% like = current_user.likes.find_by(likeable: likeable) %>
+
+    <%= button_to like_path(like), method: :delete, class: "flex-1 flex justify-center items-center space-x-2 hover:bg-gray-200 rounded-md py-2", form_class: "flex" do %>
+      <%= image_tag "icons/like.svg", size: "20" %>
+
+      <p class="pt-[2px]">Unlike</p>
+    <% end %>
+  <% else %>
+    <%= button_to likes_path, params: { like: { likeable_id: likeable.id, likeable_type: likeable.class.to_s } }, class: "flex-1 flex justify-center items-center space-x-2 hover:bg-gray-200 rounded-md py-2", form_class: "flex" do %>
+      <%= image_tag "icons/like.svg", size: "20" %>
+
+      <p class="pt-[2px]">Like</p>
+    <% end %>
+  <% end %>
+<% end %>

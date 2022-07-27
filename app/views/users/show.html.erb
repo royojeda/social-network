@@ -71,19 +71,7 @@
           </p>
 
           <div class="mt-8 p-1 flex justify-around border-y border-stone-400 space-x-1">
-            <%= turbo_frame_tag post, class: "flex-1" do %>
-              <% if post.likers.include?(@user) %>
-                <%= button_to likes_path, params: { like: { liker_id: @user, likeable_id: post } }, method: :delete, class: "flex-1 flex justify-center items-center space-x-2 hover:bg-gray-200 rounded-md py-2", form_class: "flex" do %>
-                  <%= image_tag "icons/like.svg", size: "20" %>
-                  <p class="pt-[2px]">Unlike</p>
-                <% end %>
-              <% else %>
-                <%= button_to likes_path, params: { like: { liker_id: @user, likeable_id: post, likeable_type: "Post" } }, class: "flex-1 flex justify-center items-center space-x-2 hover:bg-gray-200 rounded-md py-2", form_class: "flex" do %>
-                  <%= image_tag "icons/like.svg", size: "20" %>
-                  <p class="pt-[2px]">Like</p>
-                <% end %>
-              <% end %>
-            <% end %>
+            <%= render "likes/button", likeable: post %>
 
             <%= button_to "#", class: "flex-1 flex justify-center items-center space-x-2 hover:bg-gray-200 rounded-md py-2", form_class: "flex-1 flex" do %>
               <%= image_tag "icons/comment.svg", size: "20", class: "pt-1" %>
