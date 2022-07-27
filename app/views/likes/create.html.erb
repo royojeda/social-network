@@ -1,2 +1,6 @@
-<h1>Likes#create</h1>
-<p>Find me in app/views/likes/create.html.erb</p>
+<%= turbo_frame_tag @like.likeable do %>
+  <%= button_to likes_path, params: { like: { liker_id: @like.liker, likeable_id: @like.likeable, likeable_type: @like.likeable.class.to_s } }, class: "flex-1 flex justify-center items-center space-x-2 hover:bg-gray-200 rounded-md py-2", form_class: "flex", method: :delete do %>
+    <%= image_tag "icons/like.svg", size: "20" %>
+    <p class="pt-[2px]">Unlike</p>
+  <% end %>
+<% end %>

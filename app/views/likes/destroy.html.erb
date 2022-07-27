@@ -1,0 +1,6 @@
+<%= turbo_frame_tag @like.likeable do %>
+  <%= button_to likes_path, params: { like: { liker_id: @like.liker, likeable_id: @like.likeable, likeable_type: @like.likeable.class.to_s } }, class: "flex-1 flex justify-center items-center space-x-2 hover:bg-gray-200 rounded-md py-2", form_class: "flex" do %>
+    <%= image_tag "icons/like.svg", size: "20" %>
+    <p class="pt-[2px]">Like</p>
+  <% end %>
+<% end %>
