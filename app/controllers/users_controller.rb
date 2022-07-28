@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def show
-    @user = current_user
+    @user = User.find(params[:id])
     @profile = @user.profile
     @friend_requests = @user.friend_requests
     @other_users = User.where.not(id: @user.id) # .order("random()")
