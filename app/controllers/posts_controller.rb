@@ -12,7 +12,7 @@ class PostsController < ApplicationController
     @post = current_user.posts.new(post_params)
 
     if @post.save
-      redirect_to user_path(current_user)
+      redirect_to posts_path
     else
       render "users/show"
     end
