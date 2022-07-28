@@ -16,6 +16,10 @@
             <%= post.author.profile.last_name %>
           <% end %>
 
+          <div class="text-xs text-gray-500">
+            <%= post.created_at.localtime.strftime("%b %e %Y - %l:%M %P") %>
+          </div>
+
           <p class="mt-8">
             <%= post.content %>
           </p>
