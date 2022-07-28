@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     get "users", to: "devise/sessions#new"
 
     authenticated :user do
-      root 'users#show', as: :authenticated_root
+      root 'posts#index', as: :authenticated_root
     end
 
     unauthenticated do
