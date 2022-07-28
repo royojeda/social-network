@@ -2,7 +2,7 @@
   <%= render "shared/navbar" %>
   <div class="flex flex-1 bg-gray-200">
     <div class="flex-1 basis-[25%]">
-      <div class="m-4 ml-8 p-4 h-[87vh] rounded-lg shadow bg-gray-50 sticky top-[96px]">
+      <div class="m-4 ml-8 p-4 h-[87vh] rounded-lg shadow-lg bg-gray-50 sticky top-[96px]">
       </div>
     </div>
 
@@ -10,24 +10,24 @@
       <%= render "posts/form" %>
 
       <% @posts.each do |post| %>
-        <div class="mx-4 p-8 text-justify rounded-lg shadow bg-gray-50">
+        <div class="mx-4 p-8 rounded-lg shadow-lg bg-gray-50">
           <%= link_to user_path(post.author), class: "text-xl font-medium" do %>
             <%= post.author.profile.first_name %>
             <%= post.author.profile.last_name %>
           <% end %>
 
-          <div class="text-xs text-gray-500">
-            <%= post.created_at.localtime.strftime("%b %e %Y - %l:%M %P") %>
+          <div class="text-xs text-gray-400 w-fit">
+            <%= post.created_at.localtime.strftime("%A, %B %e, %Y at %l:%M %p") %>
           </div>
 
-          <p class="mt-8">
+          <p class="mt-8 text-justify">
             <%= post.content %>
           </p>
 
-          <div class="mt-8 p-1 flex justify-around border-y border-stone-400 space-x-1">
+          <div class="mt-8 p-0.5 flex justify-around border-y border-stone-400 space-x-0.5">
             <%= render "likes/button", likeable: post %>
 
-            <%= button_to "#", class: "flex-1 flex justify-center items-center space-x-2 hover:bg-gray-200 rounded-md py-2", form_class: "flex-1 flex" do %>
+            <%= button_to "#", class: "flex-1 flex justify-center items-center space-x-2 hover:bg-gray-200 rounded-md py-1 text-sm", form_class: "flex-1 flex" do %>
               <%= image_tag "icons/comment.svg", size: "20", class: "pt-1" %>
               <p class="pt-[2px]">Comment</p>
             <% end %>
@@ -37,7 +37,7 @@
     </div>
 
     <div class="flex-1 basis-[25%]">
-      <div class="m-4 mr-8 p-4 h-[87vh] rounded-lg shadow bg-gray-50 sticky top-[96px]">
+      <div class="m-4 mr-8 p-4 h-[87vh] rounded-lg shadow-lg bg-gray-50 sticky top-[96px]">
       </div>
     </div>
   </div>
