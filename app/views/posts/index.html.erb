@@ -9,7 +9,9 @@
     <div class="flex-1 basis-[50%] mt-24 space-y-4 mb-[28px]">
       <%= render "posts/form" %>
 
-      <%= render @posts %>
+      <%= turbo_frame_tag "posts", class: "space-y-4" do %>
+        <%= render @posts %>
+      <% end %>
     </div>
 
     <div class="flex-1 basis-[25%]">
