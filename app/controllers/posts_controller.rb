@@ -2,10 +2,11 @@ class PostsController < ApplicationController
   def index
     @user = current_user
     @profile = @user.profile
+    @friends = @user.friends
     @friend_requests = @user.friend_requests
-    @other_users = User.where.not(id: @user.id) # .order("random()")
-    # @posts = Post.where(author: current_user)
-    @posts = Post.all.order('posts.created_at DESC')
+    @other_users = User.where.not(id: @user.id)
+    shown = [@user] + @user.friends
+    @posts = Post.where(author: shown).order(updated_at: :desc)
   end
 
   def create

@@ -2,7 +2,7 @@
   <%= render "shared/navbar" %>
   <div class="flex flex-1 bg-gray-200">
     <div class="flex-1 basis-[25%]">
-      <div class="m-4 ml-8 p-4 h-[87vh] rounded-lg shadow-lg bg-gray-50 sticky top-[96px]">
+      <div class="m-4 ml-8 p-4 h-[87vh] rounded-lg sticky top-[96px]">
       </div>
     </div>
 
@@ -16,6 +16,11 @@
 
     <div class="flex-1 basis-[25%]">
       <div class="m-4 mr-8 p-4 h-[87vh] rounded-lg shadow-lg bg-gray-50 sticky top-[96px]">
+        <div class="mb-4 text-lg font-medium">
+          Friends
+        </div>
+
+        <%= render @friends %>
       </div>
     </div>
   </div>
