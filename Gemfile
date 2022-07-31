@@ -76,3 +76,9 @@ gem "devise", "~> 4.8"
 gem "cssbundling-rails", "~> 1.1"
 
 gem "faker", "~> 2.21", :group => :development
+
+gem "guard", "~> 2.18", :group => :development
+
+gem "guard-livereload", "~> 2.5", :group => :development
+
+gem "rack-livereload", "~> 0.3.17", :group => :development
