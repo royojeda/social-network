@@ -1,4 +1,4 @@
-<div class="mx-4 p-8 rounded-lg shadow-lg bg-gray-50">
+<div class="mx-4 p-8 rounded-lg shadow-lg bg-gray-50" data-controller="comment-form">
   <%= link_to user_path(post.author), class: "text-xl font-medium" do %>
     <%= post.author.profile.first_name %>
     <%= post.author.profile.last_name %>
@@ -15,17 +15,17 @@
   <div class="mt-8 p-0.5 flex justify-around border-y border-stone-400 space-x-0.5">
     <%= render "likes/button", likeable: post %>
 
-    <%= button_to "#", class: "flex-1 flex justify-center items-center space-x-2 hover:bg-gray-200 rounded-md py-1 text-sm", form_class: "flex-1 flex" do %>
+    <%= button_tag class: "flex-1 flex justify-center items-center space-x-2 hover:bg-gray-200 rounded-md py-1 text-sm", data: { action: "comment-form#clicked" } do %>
       <%= image_tag "icons/comment.svg", size: "20", class: "pt-1" %>
       <p class="pt-[2px]">Comment</p>
     <% end %>
   </div>
 
-  <div class="mt-4">Comments:</div>
-
   <div class="mt-4">
-    <%= render post.comments.order(updated_at: :desc).limit(1) %>
+    <%= render post.comments.order(updated_at: :desc).limit(10) %>
   </div>
 
-  <%= render "comments/form", post: %>
+  <div class="mt-4 hidden" data-comment-form-target="form">
+    <%= render "comments/form", post: %>
+  </div>
 </div>

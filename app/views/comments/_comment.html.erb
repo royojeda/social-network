@@ -1,6 +1,8 @@
-<div class="mt-2">
+<div class="mt-2 bg-gray-200 w-fit rounded-md px-2 py-1">
   <div class="text-lg font-medium">
-    <%= comment.commenter.profile.first_name %> <%= comment.commenter.profile.last_name %>:
+    <%= link_to comment.commenter do %>
+      <%= comment.commenter.profile.first_name %> <%= comment.commenter.profile.last_name %>
+    <% end %>
   </div>
   <%= comment.body %>
 </div>
