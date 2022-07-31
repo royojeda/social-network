@@ -20,4 +20,10 @@
       <p class="pt-[2px]">Comment</p>
     <% end %>
   </div>
+
+  <div class="mt-4">
+    <%= render post.comments.order(updated_at: :desc).limit(1) %>
+  </div>
+
+  <%= render "comments/form", post: %>
 </div>
