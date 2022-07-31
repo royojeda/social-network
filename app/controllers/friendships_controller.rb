@@ -7,7 +7,7 @@ class FriendshipsController < ApplicationController
 
       @friend_request.destroy
 
-      redirect_to user_path(current_user)
+      redirect_to posts_path
     else
       render "users/show"
     end
@@ -16,12 +16,9 @@ class FriendshipsController < ApplicationController
   def destroy
     @friendship = Friendship.find_by(friendship_params)
 
-    puts "---------------------------------------------------------------------"
-    p @friendship
-
     @friendship.destroy
 
-    redirect_to user_path(current_user)
+    redirect_to posts_path
   end
 
   private

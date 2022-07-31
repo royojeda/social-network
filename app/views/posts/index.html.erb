@@ -1,12 +1,12 @@
 <div class="flex flex-col min-h-screen">
   <%= render "shared/navbar" %>
   <div class="flex flex-1 bg-gray-200">
-    <div class="flex-1 basis-[25%]">
+    <div class="flex-1 basis-[30%]">
       <div class="m-4 ml-8 p-4 h-[87vh] rounded-lg sticky top-[96px]">
       </div>
     </div>
 
-    <div class="flex-1 basis-[50%] mt-24 space-y-4 mb-[28px]">
+    <div class="flex-1 basis-[40%] mt-24 space-y-4 mb-[28px]">
       <%= render "posts/form" %>
 
       <%= turbo_frame_tag "posts", class: "space-y-4" do %>
@@ -14,35 +14,24 @@
       <% end %>
     </div>
 
-    <div class="flex-1 basis-[25%]">
-      <div class="m-4 mr-8 p-4 h-[87vh] rounded-lg shadow-lg bg-gray-50 sticky top-[96px]">
-        <div class="mb-4 text-lg font-medium">
-          Friends
+    <div class="flex-1 basis-[30%]">
+      <div class="m-4 mr-8 sticky top-[96px]">
+        <div class="rounded-lg shadow-lg bg-gray-50 p-8">
+          <div class="mb-6 text-lg font-medium w-fit">
+            Friend Requests
+          </div>
+
+          <%= render @friend_requests %>
         </div>
 
-        <%= render @friends %>
+        <div class="mt-4 rounded-lg shadow-lg bg-gray-50 p-8">
+          <div class="mb-6 text-lg font-medium w-fit">
+            Friends
+          </div>
+
+          <%= render @friends %>
+        </div>
       </div>
     </div>
   </div>
 </div>
-
-<% if false %>
-<h2 class="text-2xl">Other Users</h2>
-<br>
-<% @other_users.each do |other_user| %>
-  <p>
-    <%= other_user.username %>
-
-    <% if other_user.pending_friends.include?(@user) %>
-      <%= button_to "Cancel Friend Request", friend_request_path, params: { friend_request: { sender_id: @user, receiver_id: other_user } }, method: :delete, class: "bg-gray-300 rounded p-1" %>
-    <% elsif @user.pending_friends.include?(other_user) %>
-      <%= button_to "Accept Friend Request", friendships_path, params: { friendship: { user_id: @user, friend_id: other_user } }, class: "bg-gray-300 rounded p-1" %>
-    <% elsif @user.friends.include?(other_user) %>
-      <%= button_to "Unfriend", friendship_path, params: { friendship: { user_id: @user, friend_id: other_user } }, method: :delete, class: "bg-gray-300 rounded p-1" %>
-    <% else %>
-      <%= button_to "Add Friend", friend_requests_path, params: { friend_request: { sender_id: @user, receiver_id: other_user } }, class: "bg-gray-300 rounded p-1" %>
-    <% end %>
-  </p>
-  <br>
-<% end %>
-<% end %>
