@@ -1,5 +1,5 @@
 <%= turbo_frame_tag post do %>
-  <div class="mx-4 p-8 rounded-lg shadow-lg bg-gray-50" data-controller="comment-form">
+  <div class="mt-4 mx-4 p-8 rounded-lg shadow-lg bg-gray-50" data-controller="comment-form">
     <%= link_to user_path(post.author), class: "text-xl font-medium" do %>
       <%= post.author.profile.first_name %>
       <%= post.author.profile.last_name %>
