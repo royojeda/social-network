@@ -1,5 +1,5 @@
-<% if likeable.is_a?(Post) %>
-  <%= turbo_frame_tag likeable, class: "flex-1" do %>
+<%= turbo_frame_tag likeable, class: "flex-1" do %>
+  <% if likeable.is_a?(Post) %>
     <% if likeable.likers.include?(current_user) %>
       <% like = current_user.likes.find_by(likeable: likeable) %>
 
@@ -15,9 +15,7 @@
         <p class="pt-[2px]">Like</p>
       <% end %>
     <% end %>
-  <% end %>
-<% elsif likeable.is_a?(Comment) %>
-  <%= turbo_frame_tag likeable, class: "flex-1" do %>
+  <% elsif likeable.is_a?(Comment) %>
     <% if likeable.likers.include?(current_user) %>
       <% like = current_user.likes.find_by(likeable: likeable) %>
 

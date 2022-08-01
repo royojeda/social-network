@@ -8,7 +8,7 @@
     <%= post.updated_at.localtime.strftime("%A, %B %e, %Y at %l:%M %p") %>
   </div>
 
-  <p class="mt-8 text-justify">
+  <p class="mt-8 text-justify w-fit">
     <%= post.content %>
   </p>
 
@@ -21,9 +21,11 @@
     <% end %>
   </div>
 
-  <div class="mt-4">
-    <%= render post.comments.order(updated_at: :desc).limit(10) %>
-  </div>
+  <% if post.comments.any? %>
+    <div class="mt-4 w-fit">
+      <%= render post.comments.order(updated_at: :desc).limit(10) %>
+    </div>
+  <% end %>
 
   <div class="mt-4 hidden" data-comment-form-target="form">
     <%= render "comments/form", post: %>
