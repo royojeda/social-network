@@ -1,0 +1,15 @@
+<% if post.likes.any? || post.comments.any? %>
+  <div class="flex">
+    <% if post.likes.any? %>
+      <div class="flex gap-x-2">
+        <%= render "likes/count", likeable: post %>
+      </div>
+    <% end %>
+
+    <% if post.comments.any? %>
+      <div class="ml-auto">
+        <%= render "comments/count", post: %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

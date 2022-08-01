@@ -8,4 +8,12 @@
   </div>
 </div>
 
-<%= render "likes/button", likeable: comment %>
+<div class="flex items-center">
+  <%= render "likes/button", likeable: comment %>
+
+  <% if comment.likes.any? %>
+    <div class="flex gap-x-1">
+      <%= render "likes/count", likeable: comment %>
+    </div>
+  <% end %>
+</div>
