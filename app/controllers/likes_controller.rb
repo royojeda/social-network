@@ -5,7 +5,9 @@ class LikesController < ApplicationController
     @like.save
 
     if @like.save
-      render partial: "button", locals: { likeable: @like.likeable }
+      # render partial: "button", locals: { likeable: @like.likeable }
+      # render partial: "posts/post", locals: { post: @like.likeable }
+      render @like.likeable
     else
       render "users/show"
     end
@@ -16,7 +18,9 @@ class LikesController < ApplicationController
 
     @like.destroy
 
-    render partial: "button", locals: { likeable: @like.likeable }
+    # render partial: "button", locals: { likeable: @like.likeable }
+    # render partial: "posts/post", locals: { post: @like.likeable }
+    render @like.likeable
   end
 
   private

@@ -1,19 +1,21 @@
-<div class="mt-2 bg-gray-200 w-fit rounded-md px-2 py-1">
-  <div class="text-lg font-medium flex">
-    <%= render comment.commenter %>
-  </div>
-
-  <div class="w-fit">
-    <%= comment.body %>
-  </div>
-</div>
-
-<div class="flex items-center">
-  <%= render "likes/button", likeable: comment %>
-
-  <% if comment.likes.any? %>
-    <div class="flex gap-x-1">
-      <%= render "likes/count", likeable: comment %>
+<%= turbo_frame_tag comment do %>
+  <div class="mt-2 bg-gray-200 w-fit rounded-md px-2 py-1">
+    <div class="text-lg font-medium flex">
+      <%= render comment.commenter %>
     </div>
-  <% end %>
-</div>
+
+    <div class="w-fit">
+      <%= comment.body %>
+    </div>
+  </div>
+
+  <div class="flex items-center">
+    <%= render "likes/button", likeable: comment %>
+
+    <% if comment.likes.any? %>
+      <div class="flex gap-x-1">
+        <%= render "likes/count", likeable: comment %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

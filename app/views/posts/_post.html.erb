@@ -1,37 +1,39 @@
-<div class="mx-4 p-8 rounded-lg shadow-lg bg-gray-50" data-controller="comment-form">
-  <%= link_to user_path(post.author), class: "text-xl font-medium" do %>
-    <%= post.author.profile.first_name %>
-    <%= post.author.profile.last_name %>
-  <% end %>
-
-  <div class="text-xs text-gray-400 w-fit">
-    <%= post.updated_at.localtime.strftime("%A, %B %e, %Y at %l:%M %p") %>
-  </div>
-
-  <p class="mt-8 text-justify w-fit">
-    <%= post.content %>
-  </p>
-
-  <div class="mt-8">
-    <%= render "posts/counts", post: %>
-  </div>
-
-  <div class="mt-2 p-0.5 flex justify-around border-y border-stone-400 space-x-0.5">
-    <%= render "likes/button", likeable: post %>
-
-    <%= button_tag class: "flex-1 flex justify-center items-center space-x-2 hover:bg-gray-200 rounded-md py-1 text-sm", data: { action: "comment-form#clicked" } do %>
-      <%= image_tag "icons/comment.svg", size: "20", class: "pt-1" %>
-      <p class="pt-[2px]">Comment</p>
+<%= turbo_frame_tag post do %>
+  <div class="mx-4 p-8 rounded-lg shadow-lg bg-gray-50" data-controller="comment-form">
+    <%= link_to user_path(post.author), class: "text-xl font-medium" do %>
+      <%= post.author.profile.first_name %>
+      <%= post.author.profile.last_name %>
     <% end %>
-  </div>
 
-  <% if post.comments.any? %>
-    <div class="mt-4 w-fit">
-      <%= render post.comments.order(updated_at: :desc).limit(10) %>
+    <div class="text-xs text-gray-400 w-fit">
+      <%= post.updated_at.localtime.strftime("%A, %B %e, %Y at %l:%M %p") %>
     </div>
-  <% end %>
 
-  <div class="mt-4 hidden" data-comment-form-target="form">
-    <%= render "comments/form", post: %>
+    <p class="mt-8 text-justify w-fit">
+      <%= post.content %>
+    </p>
+
+    <div class="mt-8">
+      <%= render "posts/counts", post: %>
+    </div>
+
+    <div class="mt-2 p-0.5 flex justify-around border-y border-stone-400 space-x-0.5">
+      <%= render "likes/button", likeable: post %>
+
+      <%= button_tag class: "flex-1 flex justify-center items-center space-x-2 hover:bg-gray-200 rounded-md py-1 text-sm", data: { action: "comment-form#clicked" } do %>
+        <%= image_tag "icons/comment.svg", size: "20", class: "pt-1" %>
+        <p class="pt-[2px]">Comment</p>
+      <% end %>
+    </div>
+
+    <% if post.comments.any? %>
+      <div class="mt-4 w-fit">
+        <%= render post.comments.order(updated_at: :desc).limit(10) %>
+      </div>
+    <% end %>
+
+    <div class="mt-4 hidden" data-comment-form-target="form">
+      <%= render "comments/form", post: %>
+    </div>
   </div>
-</div>
+<% end %>

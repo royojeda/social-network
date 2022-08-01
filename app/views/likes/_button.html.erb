@@ -1,4 +1,4 @@
-<%= turbo_frame_tag likeable, class: "flex-1" do %>
+<div class="flex-1">
   <% if likeable.is_a?(Post) %>
     <% if likeable.likers.include?(current_user) %>
       <% like = current_user.likes.find_by(likeable: likeable) %>
@@ -24,4 +24,4 @@
       <%= button_to "Like", likes_path, params: { like: { likeable_id: likeable.id, likeable_type: likeable.class.to_s } }, class: "flex-1 flex justify-center hover:underline text-sm font-medium", form_class: "flex w-fit ml-2" %>
     <% end %>
   <% end %>
-<% end %>
+</div>
