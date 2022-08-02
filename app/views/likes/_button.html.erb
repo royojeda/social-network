@@ -18,8 +18,8 @@
   <% if likeable.likers.include?(current_user) %>
     <% like = current_user.likes.find_by(likeable: likeable) %>
 
-    <%= button_to "Unlike", like_path(like), method: :delete, class: "flex-1 flex justify-center hover:underline text-sm font-medium", form_class: "flex w-fit ml-2" %>
+    <%= button_to "Unlike", like_path(like), method: :delete, class: "flex-1 flex justify-center hover:underline text-sm font-medium", form_class: "flex w-fit ml-3 mt-1" %>
   <% else %>
-    <%= button_to "Like", likes_path, params: { like: { likeable_id: likeable.id, likeable_type: likeable.class.to_s } }, class: "flex-1 flex justify-center hover:underline text-sm font-medium", form_class: "flex w-fit ml-2" %>
+    <%= button_to "Like", likes_path, params: { like: { likeable_id: likeable.id, likeable_type: likeable.class.to_s } }, class: "flex-1 flex justify-center hover:underline text-sm font-medium", form_class: "flex w-fit ml-3 mt-1" %>
   <% end %>
 <% end %>
