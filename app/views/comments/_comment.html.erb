@@ -20,6 +20,6 @@
   <div class="flex items-center w-fit">
     <%= render "likes/button", likeable: comment %>
 
-    <div class="ml-3 mr-2 text-sm text-gray-500 w-8 mt-1 text-center"><%= time_ago_in_words comment.updated_at.localtime, scope: "datetime.distance_in_words.short" %></div>
+    <div class="ml-3 mr-2 text-sm text-gray-400 w-8 mt-1 text-center"><%= time_ago_in_words comment.updated_at.localtime, scope: "datetime.distance_in_words.short" %></div>
   </div>
 <% end %>
