@@ -31,3 +31,16 @@
 
 en:
   hello: "Hello world"
+
+  datetime:
+    distance_in_words:
+      short:
+        less_than_x_minutes: '%{count}m'
+        x_minutes: '%{count}m'
+        about_x_hours: '%{count}h'
+        x_hours: '%{count}h'
+        x_days: '%{count}d'
+        about_x_months: '%{count}mo'
+        x_months: '%{count}mo'
+        about_x_years: '%{count}y'
+        over_x_years: '%{count}y'

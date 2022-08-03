@@ -1,5 +1,5 @@
 <%= turbo_frame_tag comment do %>
-  <div class="mt-2 bg-gray-200 w-fit rounded-lg shadow px-3 py-2">
+  <div class="mt-2 bg-gray-200 w-fit rounded-lg shadow px-3 py-2 relative">
     <div class="text-lg font-medium flex">
       <%= render comment.commenter %>
     </div>
@@ -7,15 +7,19 @@
     <div class="w-fit">
       <%= comment.body %>
     </div>
-  </div>
-
-  <div class="flex items-center gap-x-4">
-    <%= render "likes/button", likeable: comment %>
 
     <% if comment.likes.any? %>
-      <div class="flex gap-x-1">
-        <%= render "likes/count", likeable: comment %>
+      <div class="absolute right-[-19px] bottom-[-9px]">
+        <div class="flex gap-x-1">
+          <%= render "likes/count", likeable: comment %>
+        </div>
       </div>
     <% end %>
+  </div>
+
+  <div class="flex items-center w-fit">
+    <%= render "likes/button", likeable: comment %>
+
+    <div class="ml-3 mr-2 text-sm text-gray-500 w-8 mt-1 text-center"><%= time_ago_in_words comment.updated_at.localtime, scope: "datetime.distance_in_words.short" %></div>
   </div>
 <% end %>
