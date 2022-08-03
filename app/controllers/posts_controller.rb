@@ -4,7 +4,7 @@ class PostsController < ApplicationController
     @profile = @user.profile
     @friends = @user.friends
     @friend_requests = @user.friend_requests
-    @other_users = User.where.not(id: @user.id)
+    @other_users = User.where.not(id: (@user.friends + [@user]).map(&:id)).order('RANDOM()').limit(18)
     shown = [@user] + @user.friends
     @posts = Post.where(author: shown).order(updated_at: :desc)
   end
@@ -14,7 +14,6 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
-        # redirect_to posts_path
         format.turbo_stream
       else
         format.html do

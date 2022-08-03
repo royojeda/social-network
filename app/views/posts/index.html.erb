@@ -1,12 +1,21 @@
 <div class="flex flex-col min-h-screen">
   <%= render "shared/navbar" %>
   <div class="flex flex-1 bg-gray-200">
-    <div class="flex-1 basis-[30%]">
-      <div class="m-4 ml-8 p-4 h-[87vh] rounded-lg sticky top-[96px]">
+    <div class="flex-1 basis-[30%] pl-20 pr-10">
+      <div class="rounded-lg sticky top-[96px]">
+        <div class="mt-4 rounded-lg shadow-lg bg-gray-50 p-8">
+          <div class="mb-6 text-lg font-medium w-fit">
+            Other Users
+          </div>
+
+          <div class="mt-4 space-y-4 w-fit flex flex-col">
+            <%= render @other_users %>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="flex-1 basis-[40%] mt-24 space-y-4 mb-[28px]">
+    <div class="flex-1 basis-[40%] mt-24 rounded-lg mb-[2.6rem] px-10">
       <%= render "posts/form" %>
 
       <%= turbo_frame_tag "posts", class: "space-y-4" do %>
@@ -14,8 +23,8 @@
       <% end %>
     </div>
 
-    <div class="flex-1 basis-[30%]">
-      <div class="m-4 mr-8 sticky top-[96px]">
+    <div class="flex-1 basis-[30%] pl-10 pr-20">
+      <div class="rounded-lg sticky top-[96px]">
         <div class="rounded-lg shadow-lg bg-gray-50 p-8">
           <div class="mb-6 text-lg font-medium w-fit">
             Friend Requests
@@ -24,7 +33,7 @@
           <%= render @friend_requests %>
         </div>
 
-        <div class="mt-4 rounded-lg shadow-lg bg-gray-50 p-8">
+        <div class="mt-10 rounded-lg shadow-lg bg-gray-50 p-8">
           <div class="mb-6 text-lg font-medium w-fit">
             Friends
           </div>
