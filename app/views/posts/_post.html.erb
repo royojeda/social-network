@@ -1,9 +1,25 @@
 <%= turbo_frame_tag post do %>
   <div class="mt-8 p-8 rounded-lg shadow-lg bg-gray-50" data-controller="comment-form">
-    <%= link_to user_path(post.author), class: "text-xl font-medium" do %>
-      <%= post.author.profile.first_name %>
-      <%= post.author.profile.last_name %>
-    <% end %>
+    <div class="flex items-center justify-between">
+      <%= link_to user_path(post.author), class: "text-xl font-medium" do %>
+        <%= post.author.profile.first_name %>
+        <%= post.author.profile.last_name %>
+      <% end %>
+
+      <% if post.author == current_user %>
+        <div data-controller="post-options" class="ml-3 relative p-1 rounded-md hover:bg-gray-200">
+          <button data-action="post-options#toggle" type="button" class="flex items-center">
+            <%= image_tag "icons/options.svg", class: "h-4 w-4" %>
+          </button>
+
+          <div data-post-options-target="dropdown" class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+            <%= link_to "Edit", edit_post_path(post), class: "flex-1 flex px-4 py-2 hover:bg-gray-200" %>
+
+            <%= button_to("Delete", post_path(post), method: :delete, form_class: "block text-sm text-gray-700 hover:bg-gray-200 flex p-0", class: "flex-1 flex px-4 py-2") %>
+          </div>
+        </div>
+      <% end %>
+    </div>
 
     <div class="text-xs text-gray-400 w-fit">
       <%#= post.updated_at.localtime.strftime("%A, %B %e, %Y at %l:%M %p") %>
