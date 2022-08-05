@@ -1,10 +1,10 @@
 <%= turbo_frame_tag post do %>
   <div class="mt-8 p-8 rounded-lg shadow-lg bg-gray-50" data-controller="comment-form">
     <div class="flex items-center justify-between">
-      <%= link_to user_path(post.author), class: "text-xl font-medium" do %>
-        <%= post.author.profile.first_name %>
-        <%= post.author.profile.last_name %>
-      <% end %>
+
+      <div class="text-xl font-medium">
+        <%= render post.author %>
+      </div>
 
       <% if post.author == current_user %>
         <div data-controller="post-options" class="ml-3 relative p-1 rounded-md hover:bg-gray-200">
