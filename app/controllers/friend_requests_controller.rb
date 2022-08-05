@@ -14,7 +14,7 @@ class FriendRequestsController < ApplicationController
 
     @friend_request.destroy
 
-    redirect_to posts_path
+    respond_to { |format| format.turbo_stream }
   end
 
   private
