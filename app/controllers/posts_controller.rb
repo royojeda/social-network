@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   def index
     @user = current_user
     @profile = @user.profile
-    @friends = @user.friends
+    @friends = @user.friends.includes(:profile).order("profiles.first_name asc")
     @friend_requests = @user.friend_requests
     @other_users = User.where.not(id: (@user.friends + [@user]).map(&:id)).order('RANDOM()').limit(18)
     shown = [@user] + @user.friends
