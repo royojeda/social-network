@@ -1,20 +1,20 @@
 class FriendshipsController < ApplicationController
   def create
-    @friendship = Friendship.new(friendship_params)
+    @friendship = current_user.friendships.new(friendship_params)
 
-    if @friendship.save
-      @friend_request = FriendRequest.find_by(sender_id: friendship_params[:friend_id], receiver_id: friendship_params[:user_id])
+    respond_to do |format|
+      if @friendship.save
+        @friend_request = current_user.friend_requests.find_by(sender_id: friendship_params[:friend_id])
 
-      @friend_request.destroy
+        @friend_request.destroy
 
-      redirect_to posts_path
-    else
-      render "users/show"
+        format.turbo_stream
+      end
     end
   end
 
   def destroy
-    @friendship = Friendship.find_by(friendship_params)
+    @friendship = Friendship.find(params[:id])
 
     @friendship.destroy
 
@@ -24,6 +24,6 @@ class FriendshipsController < ApplicationController
   private
 
   def friendship_params
-    params.require(:friendship).permit(:user_id, :friend_id)
+    params.require(:friendship).permit(:friend_id)
   end
 end

@@ -38,9 +38,9 @@
             Friends
           </div>
 
-          <div class="mt-4 space-y-4 w-fit flex flex-col">
+          <%= turbo_frame_tag "friends", class: "mt-4 space-y-4 w-fit flex flex-col" do %>
             <%= render @friends %>
-          </div>
+          <% end %>
         </div>
       </div>
     </div>

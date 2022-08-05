@@ -1,0 +1,6 @@
+<%= turbo_stream.remove @friend_request do%>
+<% end %>
+
+<%= turbo_stream.update "friends" do %>
+  <%= render current_user.friends.includes(:profile).order("profiles.first_name asc") %>
+<% end %>

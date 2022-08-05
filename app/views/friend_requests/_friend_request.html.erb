@@ -1,11 +1,11 @@
-<div class="mt-4 flex items-center justify-between">
+<%= turbo_frame_tag friend_request, class: "mt-4 flex items-center justify-between" do %>
   <%= link_to friend_request.sender, class: "w-fit" do %>
     <%= friend_request.sender.profile.first_name %> <%= friend_request.sender.profile.last_name %>
   <% end %>
 
   <div class="flex space-x-2 basis-1/2">
-      <%= button_to "Confirm", friendships_path, params: { friendship: { user_id: current_user, friend_id: friend_request.sender } }, class: "bg-blue-300 rounded p-2 w-full shadow", form_class: "basis-1/2" %>
+    <%= button_to "Confirm", friendships_path, params: { friendship: { friend_id: friend_request.sender } }, class: "bg-blue-300 rounded p-2 w-full shadow", form_class: "basis-1/2" %>
 
-      <%= button_to "Delete", friend_request, class: "bg-gray-200 rounded p-2 w-full shadow", method: :delete, form_class: "basis-1/2" %>
+    <%= button_to "Delete", friend_request, class: "bg-gray-200 rounded p-2 w-full shadow", method: :delete, form_class: "basis-1/2" %>
   </div>
-</div>
+<% end %>
