@@ -9,8 +9,8 @@
     </div>
 
     <% if comment.likes.any? %>
-      <div class="absolute right-[-19px] bottom-[-9px]">
-        <div class="flex gap-x-1">
+      <div class="absolute right-[-8px] bottom-[-10px] border border-black rounded-lg px-1  bg-gray-300">
+        <div class="flex gap-x-1 text-sm">
           <%= render "likes/count", likeable: comment %>
         </div>
       </div>
