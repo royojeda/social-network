@@ -5,11 +5,13 @@
         <div class="text-lg font-medium flex">
           <%= render comment.commenter %>
         </div>
-        <div class="w-fit">
+
+        <div class="break-words">
           <%= comment.body %>
         </div>
+
         <% if comment.likes.any? %>
-          <div class="absolute right-[-8px] bottom-[-10px] border border-black rounded-lg px-1  bg-gray-300">
+          <div class="absolute right-[-8px] bottom-[-8px] border-black rounded-lg px-1 bg-gray-300 shadow">
             <div class="flex gap-x-1 text-sm">
               <%= render "likes/count", likeable: comment %>
             </div>
@@ -17,29 +19,29 @@
         <% end %>
       </div>
 
-
-
-      <% if comment.commenter == current_user || comment.post.author == current_user %>
-        <div data-comment-options-target="menu" class="rounded-full relative hidden">
-          <button data-action="comment-options#toggle" type="button" class="rounded-full flex items-center">
-            <%= image_tag "icons/horizontal-dots.svg", size: "30x30", class: "rounded-full hover:bg-gray-200" %>
-          </button>
-
-          <div data-comment-options-target="dropdown" class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-10">
-            <% if comment.commenter == current_user %>
-              <%= link_to "Edit", edit_comment_path(comment), class: "flex-1 flex px-4 py-2 hover:bg-gray-200" %>
-            <% end %>
-
-            <%= button_to "Delete", comment, method: :delete, form_class: "block text-gray-700 hover:bg-gray-200 flex p-0", class: "flex-1 flex px-4 py-2" %>
+      <div class="w-10">
+        <% if comment.commenter == current_user || comment.post.author == current_user %>
+          <div data-comment-options-target="menu" class="rounded-full relative hidden">
+            <button data-action="comment-options#toggle" type="button" class="rounded-full flex items-center">
+              <%= image_tag "icons/horizontal-dots.svg", size: "30x30", class: "rounded-full hover:bg-gray-200 shadow" %>
+            </button>
+            <div data-comment-options-target="dropdown" class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-10">
+              <% if comment.commenter == current_user %>
+                <%= link_to "Edit", edit_comment_path(comment), class: "flex-1 flex px-4 py-2 hover:bg-gray-200" %>
+              <% end %>
+              <%= button_to "Delete", comment, method: :delete, form_class: "block text-gray-700 hover:bg-gray-200 flex p-0", class: "flex-1 flex px-4 py-2" %>
+            </div>
           </div>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
     </div>
 
     <div class="flex items-center w-fit">
       <%= render "likes/button", likeable: comment %>
 
-      <div class="ml-3 mr-2 text-sm text-gray-400 w-8 mt-1 text-center"><%= time_ago_in_words comment.updated_at.localtime, scope: "datetime.distance_in_words.short" %></div>
+      <div class="text-sm text-gray-400 w-8 ml-2 mt-1 text-center hover:underline">
+        <%= time_ago_in_words comment.updated_at.localtime, scope: "datetime.distance_in_words.short" %>
+      </div>
     </div>
   <% end %>
 </div>
