@@ -46,7 +46,7 @@
     </div>
 
     <% if post.comments.any? %>
-      <div class="mt-4 w-fit">
+      <div class="mt-4">
         <%= render post.comments.order(updated_at: :desc).limit(10) %>
       </div>
     <% end %>

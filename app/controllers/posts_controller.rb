@@ -9,6 +9,10 @@ class PostsController < ApplicationController
     @posts = Post.where(author: shown).order(updated_at: :desc)
   end
 
+  def show
+    @post = Post.find(params[:id])
+  end
+
   def create
     @post = current_user.posts.new(post_params)
 
