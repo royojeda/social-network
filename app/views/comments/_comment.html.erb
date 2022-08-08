@@ -25,10 +25,12 @@
             <button data-action="comment-options#toggle" type="button" class="rounded-full flex items-center">
               <%= image_tag "icons/horizontal-dots.svg", size: "30x30", class: "rounded-full hover:bg-gray-200 shadow" %>
             </button>
+            
             <div data-comment-options-target="dropdown" class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-10">
               <% if comment.commenter == current_user %>
                 <%= link_to "Edit", edit_comment_path(comment), class: "flex-1 flex px-4 py-2 hover:bg-gray-200" %>
               <% end %>
+
               <%= button_to "Delete", comment, method: :delete, form_class: "block text-gray-700 hover:bg-gray-200 flex p-0", class: "flex-1 flex px-4 py-2" %>
             </div>
           </div>
