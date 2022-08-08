@@ -1,4 +1,4 @@
-<div data-controller="comment-options" data-action="mouseover->comment-options#hovered mouseleave->comment-options#unhovered" class="hover:bg-gray-100 rounded-lg">
+<div data-controller="comment-options" data-action="mouseover->comment-options#hovered mouseleave->comment-options#unhovered" class="hover:bg-gray-100 rounded-lg relative">
   <%= turbo_frame_tag comment do %>
     <div class="mt-2 flex items-center space-x-2 pr-2">
       <div class="bg-gray-200 w-fit rounded-lg shadow px-3 py-2 relative">
@@ -25,7 +25,7 @@
             <button data-action="comment-options#toggle" type="button" class="rounded-full flex items-center">
               <%= image_tag "icons/horizontal-dots.svg", size: "30x30", class: "rounded-full hover:bg-gray-200 shadow" %>
             </button>
-            
+
             <div data-comment-options-target="dropdown" class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-10">
               <% if comment.commenter == current_user %>
                 <%= link_to "Edit", edit_comment_path(comment), class: "flex-1 flex px-4 py-2 hover:bg-gray-200" %>
@@ -41,8 +41,14 @@
     <div class="flex items-center w-fit">
       <%= render "likes/button", likeable: comment %>
 
-      <div class="text-sm text-gray-400 w-8 ml-2 mt-1 text-center hover:underline">
-        <%= time_ago_in_words comment.updated_at.localtime, scope: "datetime.distance_in_words.short" %>
+      <div data-controller="comment-time" data-action="mouseover->comment-time#hovered mouseleave->comment-time#unhovered">
+        <div class="text-sm text-gray-400 w-8 ml-2 mt-1 text-center hover:underline">
+          <%= time_ago_in_words comment.updated_at.localtime, scope: "datetime.distance_in_words.short" %>
+        </div>
+
+        <div data-comment-time-target="fullTime" class="w-fit shadow rounded p-1 absolute left-[-1.75rem] bottom-[-1.75rem] bg-white border border-gray-200 text-xs z-10 hidden">
+          <%= comment.updated_at.localtime.strftime("%A, %B %e, %Y at %l:%M %p") %>
+        </div>
       </div>
     </div>
   <% end %>
