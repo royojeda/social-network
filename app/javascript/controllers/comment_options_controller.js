@@ -4,12 +4,16 @@ export default class extends Controller {
   static targets = [ "menu", "dropdown" ]
 
   hovered() {
-    this.menuTarget.classList.remove("hidden")
+    if (this.hasMenuTarget) {
+      this.menuTarget.classList.remove("hidden")
+    }
   }
 
   unhovered() {
-    this.menuTarget.classList.add("hidden")
-    this.dropdownTarget.classList.add("hidden")
+    if (this.hasMenuTarget && this.hasDropdownTarget) {
+      this.menuTarget.classList.add("hidden")
+      this.dropdownTarget.classList.add("hidden")
+    }
   }
 
   toggle() {
