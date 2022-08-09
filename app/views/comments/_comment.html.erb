@@ -42,7 +42,7 @@
       <%= render "likes/button", likeable: comment %>
 
       <div data-controller="comment-time" data-action="mouseover->comment-time#hovered mouseleave->comment-time#unhovered">
-        <div class="text-sm text-gray-400 w-8 ml-2 mt-1 text-center hover:underline">
+        <div class="text-sm text-gray-400 w-8 ml-2 mt-1 text-center hover:underline cursor-default">
           <%= time_ago_in_words comment.updated_at.localtime, scope: "datetime.distance_in_words.short" %>
         </div>
 
