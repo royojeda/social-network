@@ -1,34 +1,34 @@
 <%= turbo_frame_tag post do %>
   <div class="mt-8 p-8 rounded-lg shadow-lg bg-gray-50" data-controller="comment-form">
-    <div class="flex items-center justify-between">
-
-      <div class="text-xl font-medium">
-        <%= render post.author %>
+    <div class="flex justify-between relative items-center">
+      <div class="flex flex-col">
+        <div class="text-xl font-medium">
+          <%= render post.author %>
+        </div>
+        <div data-controller="post-time" class="text-xs">
+          <div data-action="mouseover->post-time#hovered mouseleave->post-time#unhovered" class="text-gray-400 w-fit hover:underline">
+            <%= time_ago_in_words(post.updated_at.localtime) %> ago
+          </div>
+          <div data-post-time-target="fullTime" class="w-fit shadow rounded p-1 absolute left-[-2.75rem] bottom-[-1.75rem] bg-white hidden border border-gray-200">
+            <%= post.updated_at.localtime.strftime("%A, %B %e, %Y at %l:%M %p") %>
+          </div>
+        </div>
       </div>
-
       <% if post.author == current_user %>
-        <div data-controller="post-options" class="ml-3 relative p-1 rounded-md hover:bg-gray-200">
-          <button data-action="post-options#toggle" type="button" class="flex items-center">
-            <%= image_tag "icons/options.svg", class: "h-4 w-4" %>
+        <div data-controller="post-options" data-post-options-target="menu" class="relative">
+          <button data-action="post-options#toggle" type="button" class="rounded-full hover:bg-gray-200 flex p-1">
+            <%= image_tag "icons/horizontal-dots.svg", size: "30", class: "rounded-full" %>
           </button>
 
-          <div data-post-options-target="dropdown" class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
-            <%= link_to "Edit", edit_post_path(post), class: "flex-1 flex px-4 py-2 hover:bg-gray-200" %>
+          <div data-post-options-target="dropdown" class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-10">
+            <% if post.author == current_user %>
+              <%= link_to "Edit", edit_post_path(post), class: "flex-1 flex px-4 py-2 hover:bg-gray-200" %>
+            <% end %>
 
-            <%= button_to("Delete", post_path(post), method: :delete, form_class: "block text-gray-700 hover:bg-gray-200 flex p-0", class: "flex-1 flex px-4 py-2") %>
+            <%= button_to "Delete", post, method: :delete, form_class: "block text-gray-700 hover:bg-gray-200 flex p-0", class: "flex-1 flex px-4 py-2" %>
           </div>
         </div>
       <% end %>
-    </div>
-
-    <div data-controller="post-time" class="text-xs relative">
-      <div data-action="mouseover->post-time#hovered mouseleave->post-time#unhovered" class="text-gray-400 w-fit hover:underline">
-        <%= time_ago_in_words(post.updated_at.localtime) %> ago
-      </div>
-
-      <div data-post-time-target="fullTime" class="w-fit shadow rounded p-1 absolute left-[-2.75rem] bottom-[-1.75rem] bg-white hidden border border-gray-200">
-        <%= post.updated_at.localtime.strftime("%A, %B %e, %Y at %l:%M %p") %>
-      </div>
     </div>
 
     <p class="mt-8 text-justify w-fit">
