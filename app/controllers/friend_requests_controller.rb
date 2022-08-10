@@ -1,11 +1,14 @@
 class FriendRequestsController < ApplicationController
   def create
     @friend_request = FriendRequest.new(friend_request_params)
+    @friend_request.sender = current_user
 
-    if @friend_request.save
-      redirect_to user_path(current_user)
-    else
-      render "users/show"
+    respond_to do |format|
+      if @friend_request.save
+        format.turbo_stream
+      else
+        format.html { redirect_to posts_path }
+      end
     end
   end
 
@@ -20,6 +23,6 @@ class FriendRequestsController < ApplicationController
   private
 
   def friend_request_params
-    params.require(:friend_request).permit(:sender_id, :receiver_id)
+    params.require(:friend_request).permit(:receiver_id)
   end
 end

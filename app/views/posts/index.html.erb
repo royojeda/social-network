@@ -8,9 +8,9 @@
             Other Users
           </div>
 
-          <div class="mt-4 space-y-4 w-fit flex flex-col">
-            <%= render @other_users %>
-          </div>
+          <%= turbo_frame_tag "other_users", class: "mt-4 space-y-4 flex flex-col" do %>
+            <%= render "users/other_users" %>
+          <% end %>
         </div>
       </div>
     </div>
@@ -30,7 +30,9 @@
             Friend Requests
           </div>
 
-          <%= render @friend_requests %>
+          <%= turbo_frame_tag "friend_requests" do %>
+            <%= render @friend_requests %>
+          <% end %>
         </div>
 
         <div class="mt-10 rounded-lg shadow-lg bg-gray-50 p-8">

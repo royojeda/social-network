@@ -4,7 +4,6 @@ class PostsController < ApplicationController
     @profile = @user.profile
     @friends = @user.friends.includes(:profile).order("profiles.first_name asc")
     @friend_requests = @user.friend_requests
-    @other_users = User.where.not(id: (@user.friends + [@user]).map(&:id)).order('RANDOM()').limit(18)
     shown = [@user] + @user.friends
     @posts = Post.where(author: shown).order(updated_at: :desc)
   end

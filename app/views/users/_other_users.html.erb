@@ -1,0 +1,14 @@
+<% current_user.other_users.each do |other_user| %>
+  <div class="flex justify-between items-center">
+    <%= render other_user %>
+
+    <% existing_request = FriendRequest.find_by(sender: current_user, receiver: other_user) %>
+    <div class="basis-1/2 flex justify-end">
+      <% if existing_request %>
+        <%= button_to "Cancel Request", existing_request, method: :delete, class: "p-2 rounded shadow-md border border-gray-200" %>
+      <% else %>
+        <%= button_to "Add friend", friend_requests_path, params: { friend_request: { receiver_id: other_user.id } }, class: "p-2 rounded shadow-md border border-gray-200" %>
+      <% end %>
+    </div>
+  </div>
+<% end %>

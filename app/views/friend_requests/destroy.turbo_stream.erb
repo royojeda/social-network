@@ -1,2 +1,10 @@
-<%= turbo_stream.remove @friend_request do%>
+<%#= turbo_stream.remove @friend_request do%>
+<%# end %>
+
+<%= turbo_stream.update "friend_requests" do %>
+  <%= render current_user.friend_requests %>
+<% end %>
+
+<%= turbo_stream.update "other_users" do %>
+  <%= render "users/other_users" %>
 <% end %>
