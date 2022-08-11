@@ -34,6 +34,6 @@ class User < ApplicationRecord
   end
 
   def other_users
-    User.includes(:profile).where.not(id: (friends + [self]).map(&:id)).order("profiles.first_name asc").limit(13)
+    User.includes(:profile).where.not(id: (friends + [self]).map(&:id)).order("profiles.first_name asc").limit(9)
   end
 end

@@ -4,8 +4,8 @@
   <% end %>
 
   <div class="flex space-x-2 basis-1/2">
-    <%= button_to "Confirm", friendships_path, params: { friendship: { friend_id: friend_request.sender } }, class: "bg-blue-300 rounded p-2 w-full shadow", form_class: "basis-1/2" %>
+    <%= button_to "Confirm", friendships_path, params: { friendship: { friend_id: friend_request.sender } }, class: "border border-gray-200 rounded p-2 w-full shadow-md hover:bg-gray-100 focus:bg-gray-200", form_class: "basis-1/2" %>
 
-    <%= button_to "Delete", friend_request, class: "bg-gray-200 rounded p-2 w-full shadow", method: :delete, form_class: "basis-1/2" %>
+    <%= button_to "Delete", friend_request, class: "bg-gray-200 hover:bg-gray-300 focus:bg-gray-400 border border-gray-200 rounded p-2 w-full shadow-md", method: :delete, form_class: "basis-1/2" %>
   </div>
 </div>
