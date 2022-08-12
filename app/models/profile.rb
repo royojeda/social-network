@@ -4,7 +4,7 @@ class Profile < ApplicationRecord
   belongs_to :user
 
   def gravatar_photo_url
-    "https://www.gravatar.com/avatar/#{md5_hash}?d=mp"
+    "https://www.gravatar.com/avatar/#{md5_hash}?d=monsterid"
   end
 
   private
