@@ -1,5 +1,5 @@
 <div class="flex space-x-2 items-center">
-  <%= link_to user, data: { turbo_frame: "_top" } do %>
+  <%= link_to user, data: { turbo_frame: "_top" }, class: "rounded-full" do %>
       <%= image_tag user.profile.gravatar_photo_url, size: "44", class: "rounded-full" %>
     <% end %>
 

@@ -2,7 +2,7 @@
   <div class="mt-8 p-8 rounded-lg shadow-lg bg-gray-50" data-controller="comment-form">
     <div class="flex justify-between relative items-center">
       <div class="flex space-x-2">
-        <%= link_to post.author, data: { turbo_frame: "_top" } do %>
+        <%= link_to post.author, data: { turbo_frame: "_top" }, class: "rounded-full" do %>
           <%= image_tag post.author.profile.gravatar_photo_url, size: "44", class: "rounded-full" %>
         <% end %>
 
