@@ -1,3 +1,9 @@
-<%= link_to user, data: { turbo_frame: "_top" } do %>
-  <%= user.profile.first_name %> <%= user.profile.last_name %>
-<% end %>
+<div class="flex space-x-2 items-center">
+  <%= link_to user, data: { turbo_frame: "_top" } do %>
+      <%= image_tag user.profile.gravatar_photo_url, size: "44", class: "rounded-full" %>
+    <% end %>
+
+  <%= link_to user, data: { turbo_frame: "_top" } do %>
+    <%= user.profile.first_name %> <%= user.profile.last_name %>
+  <% end %>
+</div>

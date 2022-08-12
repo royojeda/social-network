@@ -1,7 +1,5 @@
 <div class="mt-4 flex items-center justify-between">
-  <%= link_to friend_request.sender, class: "w-fit" do %>
-    <%= friend_request.sender.profile.first_name %> <%= friend_request.sender.profile.last_name %>
-  <% end %>
+  <%= render friend_request.sender %>
 
   <div class="flex space-x-2 basis-1/2">
     <%= button_to "Confirm", friendships_path, params: { friendship: { friend_id: friend_request.sender } }, class: "border border-gray-200 rounded p-2 w-full shadow-md hover:bg-gray-100 focus:bg-gray-200", form_class: "basis-1/2" %>
