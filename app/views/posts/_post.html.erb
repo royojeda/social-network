@@ -41,9 +41,45 @@
       <% end %>
     </div>
 
-    <p class="mt-8 text-justify w-fit">
-      <%= post.content %>
-    </p>
+    <% if post.content.split.any? { |word| word.length > 40 } %>
+      <div class="break-all mt-8 text-justify w-fit">
+        <% if post.content.length > 250 %>
+          <div data-controller="long-content">
+            <div data-long-content-target="truncated">
+              <%= truncate post.content, length: 250, separator: " ", omission: " ... " %>
+              <%= button_tag "See more", type: "button", class: "text-gray-500 hover:underline", data: { action: "long-content#clicked" } %>
+            </div>
+
+            <div data-long-content-target="full" class="hidden">
+              <%= post.content %>
+            </div>
+          </div>
+        <% else %>
+          <div>
+            <%= post.content %>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="break-words mt-8 text-justify w-fit">
+        <% if post.content.length > 250 %>
+          <div data-controller="long-content">
+            <div data-long-content-target="truncated">
+              <%= truncate post.content, length: 250, separator: " ", omission: " ... " %>
+              <%= button_tag "See more", type: "button", class: "text-gray-500 hover:underline", data: { action: "long-content#clicked" } %>
+            </div>
+
+            <div data-long-content-target="full" class="hidden">
+              <%= post.content %>
+            </div>
+          </div>
+        <% else %>
+          <div>
+            <%= post.content %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
 
     <div class="mt-8">
       <%= render "posts/counts", post: %>

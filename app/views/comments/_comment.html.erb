@@ -17,13 +17,13 @@
         <% if comment.body.split.any? { |word| word.length > 40 } %>
           <div class="break-all">
             <% if comment.body.length > 100 %>
-              <div data-controller="long-comment">
-                <div data-long-comment-target="truncated">
+              <div data-controller="long-content">
+                <div data-long-content-target="truncated">
                   <%= truncate comment.body, length: 100, separator: " ", omission: " ... " %>
-                  <%= button_tag "See more", type: "button", class: "text-gray-500 hover:underline", data: { action: "long-comment#clicked" } %>
+                  <%= button_tag "See more", type: "button", class: "text-gray-500 hover:underline", data: { action: "long-content#clicked" } %>
                 </div>
 
-                <div data-long-comment-target="full" class="hidden">
+                <div data-long-content-target="full" class="hidden">
                   <%= comment.body %>
                 </div>
               </div>
@@ -36,13 +36,13 @@
         <% else %>
           <div class="break-words">
             <% if comment.body.length > 100 %>
-              <div data-controller="long-comment">
-                <div data-long-comment-target="truncated">
+              <div data-controller="long-content">
+                <div data-long-content-target="truncated">
                   <%= truncate comment.body, length: 100, separator: " ", omission: " ... " %>
-                  <%= button_tag "See more", type: "button", class: "text-gray-500 hover:underline", data: { action: "long-comment#clicked" } %>
+                  <%= button_tag "See more", type: "button", class: "text-gray-500 hover:underline", data: { action: "long-content#clicked" } %>
                 </div>
 
-                <div data-long-comment-target="full" class="hidden">
+                <div data-long-content-target="full" class="hidden">
                   <%= comment.body %>
                 </div>
               </div>
