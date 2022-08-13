@@ -1,11 +1,11 @@
-<div data-controller="comment-options" data-action="mouseover->comment-options#hovered mouseleave->comment-options#unhovered" class="hover:bg-gray-100 rounded-lg relative">
+<div data-controller="comment-options" data-action="mouseover->comment-options#hovered mouseleave->comment-options#unhovered" class="hover:bg-gray-100 rounded-lg relative py-0.5">
   <%= turbo_frame_tag comment do %>
     <div class="mt-2 flex items-center space-x-2 pr-2">
       <%= link_to comment.commenter, data: { turbo_frame: "_top" }, class: "rounded-full self-start mt-2.5 ml-2 shrink-0" do %>
           <%= image_tag comment.commenter.profile.gravatar_photo_url, size: "36", class: "rounded-full" %>
       <% end %>
 
-      <div class="bg-gray-200 w-fit rounded-lg shadow px-3 py-2 relative">
+      <div class="bg-gray-200 rounded-lg shadow px-3 py-2 relative">
         <div class="text-lg font-medium flex">
           <div class="flex space-x-2 items-center">
             <%= link_to comment.commenter, data: { turbo_frame: "_top" } do %>
@@ -14,9 +14,45 @@
           </div>
         </div>
 
-        <div class="break-words">
-          <%= comment.body %>
-        </div>
+        <% if comment.body.split.any? { |word| word.length > 40 } %>
+          <div class="break-all">
+            <% if comment.body.length > 100 %>
+              <div data-controller="long-comment">
+                <div data-long-comment-target="truncated">
+                  <%= truncate comment.body, length: 100, separator: " ", omission: " ... " %>
+                  <%= button_tag "See more", type: "button", class: "text-gray-500 hover:underline", data: { action: "long-comment#clicked" } %>
+                </div>
+
+                <div data-long-comment-target="full" class="hidden">
+                  <%= comment.body %>
+                </div>
+              </div>
+            <% else %>
+              <div>
+                <%= comment.body %>
+              </div>
+            <% end %>
+          </div>
+        <% else %>
+          <div class="break-words">
+            <% if comment.body.length > 100 %>
+              <div data-controller="long-comment">
+                <div data-long-comment-target="truncated">
+                  <%= truncate comment.body, length: 100, separator: " ", omission: " ... " %>
+                  <%= button_tag "See more", type: "button", class: "text-gray-500 hover:underline", data: { action: "long-comment#clicked" } %>
+                </div>
+
+                <div data-long-comment-target="full" class="hidden">
+                  <%= comment.body %>
+                </div>
+              </div>
+            <% else %>
+              <div>
+                <%= comment.body %>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
 
         <% if comment.likes.any? %>
           <div class="absolute right-[-8px] bottom-[-8px] border-black rounded-lg px-1 bg-gray-300 shadow">
