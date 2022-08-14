@@ -1,5 +1,5 @@
 <%= turbo_frame_tag @post do %>
-  <div class="mt-8 p-8 rounded-lg shadow-lg bg-gray-50" data-controller="comment-form">
+  <div class="mt-8 p-8 rounded-lg shadow-lg bg-gray-50" data-controller="comments-visibility">
     <div class="flex items-center justify-between">
       <%= link_to user_path(@post.author), class: "text-xl font-medium" do %>
         <%= @post.author.profile.first_name %>
@@ -33,19 +33,19 @@
         <%= render "likes/button", likeable: @post %>
       </div>
 
-      <%= button_tag class: "flex-1 flex justify-center items-center space-x-2 hover:bg-gray-200 rounded-md py-1 text-sm", data: { action: "comment-form#clicked" } do %>
+      <%= button_tag class: "flex-1 flex justify-center items-center space-x-2 hover:bg-gray-200 rounded-md py-1 text-sm", data: { action: "comments-visibility#toggleForm" } do %>
         <%= image_tag "icons/comment.svg", size: "20", class: "pt-1" %>
         <p class="pt-[2px]">Comment</p>
       <% end %>
     </div>
 
     <% if @post.comments.any? %>
-      <div class="mt-4 w-fit">
+      <div class="mt-4 w-fit" data-comments-visibility-target="comments">
         <%= render @post.comments.order(updated_at: :desc).limit(10) %>
       </div>
     <% end %>
 
-    <div class="mt-4 hidden" data-comment-form-target="form">
+    <div class="mt-4 hidden" data-comments-visibility-target="form">
       <%= render "comments/form", post: @post %>
     </div>
   </div>
