@@ -1,3 +1,3 @@
-<%= button_tag type: "button", data: { action: "comments-visibility#toggle" } do %>
-  <%= pluralize post.comments.count, "comment" %>
+<%= button_tag type: "button", data: { action: "comments-visibility#toggle" }, class: "hover:underline" do %>
+  <%= pluralize post.comments.count, "Comment" %>
 <% end %>
