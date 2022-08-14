@@ -90,7 +90,7 @@
         <%= render "likes/button", likeable: post %>
       </div>
 
-      <%= button_tag class: "flex-1 flex justify-center items-center space-x-2 hover:bg-gray-200 rounded-md py-1 text-sm", data: { action: "comment-form#clicked" } do %>
+      <%= button_tag type: "button", class: "flex-1 flex justify-center items-center space-x-2 hover:bg-gray-200 rounded-md py-1 text-sm", data: { action: "comments-visibility#toggleForm" } do %>
         <%= image_tag "icons/comment.svg", size: "20", class: "pt-1" %>
         <p class="pt-[2px]">Comment</p>
       <% end %>
@@ -102,7 +102,7 @@
       </div>
     <% end %>
 
-    <div class="mt-4 hidden" data-comment-form-target="form">
+    <div class="mt-4 hidden" data-comments-visibility-target="form">
       <%= render "comments/form", post: %>
     </div>
   </div>
