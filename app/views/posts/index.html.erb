@@ -19,7 +19,11 @@
       <%= render "posts/form", post: Post.new %>
 
       <%= turbo_frame_tag "posts", class: "space-y-4" do %>
-        <%= render @posts %>
+        <% @posts.each do |post| %>
+          <%= turbo_frame_tag post, src: post, loading: :lazy do %>
+            <div class="py-96">Placeholder</div>
+          <% end %>
+        <% end %>
       <% end %>
     </div>
 
